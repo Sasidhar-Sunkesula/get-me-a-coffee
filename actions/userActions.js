@@ -35,6 +35,7 @@ export const initiate = async (amount, to_username, paymentform) => {
 };
 
 export const fetchuser = async (username) => {
+  await connectDB();
   let u = await User.findOne({ username: username });
   console.log("uu", u);
   let user = u.toObject({ flattenObjectIds: true });
@@ -43,6 +44,7 @@ export const fetchuser = async (username) => {
 };
 
 export const fetchpayments = async (username) => {
+  await connectDB();
   // find all payments sorted by decreasing order of amount and flatten object ids
   let p = await Payment.find({ to_user: username })
     .sort({ amount: -1 })
@@ -57,6 +59,7 @@ export const fetchpayments = async (username) => {
 };
 
 export const updateProfile = async (data, oldusername) => {
+  await connectDB();
   let ndata = Object.fromEntries(data);
 
   // if the username is changed, check if the new username is available
