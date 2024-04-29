@@ -11,20 +11,20 @@ import { Bounce } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 const PaymentPage = ({ username }) => {
+  console.log("username", username);
   // const { data: session } = useSession();
   const [paymentform, setpaymentform] = useState({
     name: "",
     message: "",
     amount: "",
   });
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState();
   const [payments, setPayments] = useState([]);
   const SearchParams = useSearchParams();
   const router = useRouter();
 
   useEffect(() => {
     getData();
-    
   }, []);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const PaymentPage = ({ username }) => {
         transition: Bounce,
       });
     }
-    
+
     router.push(`${username}`);
   }, []);
 
@@ -50,12 +50,13 @@ const PaymentPage = ({ username }) => {
   };
 
   const getData = async () => {
-    let u = fetchuser(username);
+    const u = await fetchuser(username);
+    console.log("meeee", u);
     setCurrentUser(u);
-    console.log("user bhai", currentUser)
+
     let dbPayments = await fetchpayments(username);
+
     setPayments(dbPayments);
-    
   };
 
   // Get the order Id
@@ -88,6 +89,8 @@ const PaymentPage = ({ username }) => {
     rzp1.open();
   };
 
+  if (!currentUser) return <div>Loading...</div>;
+
   return (
     <>
       <ToastContainer
@@ -106,7 +109,7 @@ const PaymentPage = ({ username }) => {
         id="razorpay-script"
         src="https://checkout.razorpay.com/v1/checkout.js"
       ></Script>
-
+      {console.log("db payments", payments)}
       <div className="object-cover w-full relative">
         <Image
           className="object-cover w-full h-48 md:h-[350]"
@@ -150,7 +153,7 @@ const PaymentPage = ({ username }) => {
                     />
                     <span>
                       {payment.name} donated{" "}
-                      <span className="font-bold">${payment.amount}</span> with
+                      <span className="font-bold">₹{payment.amount}</span> with
                       a message &quot;{payment.message}&quot;
                     </span>
                   </li>

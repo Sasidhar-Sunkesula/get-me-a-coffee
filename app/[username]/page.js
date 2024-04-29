@@ -9,10 +9,11 @@ const Username = async ({ params }) => {
   const checkUser = async () => {
     await connectDB();
     let u = await User.findOne({ username: params.username });
+    console.log("userhy", u);
     if (!u) {
       return notFound();
     }
-  };
+  }
   await checkUser();
   return (
     <>
@@ -25,6 +26,6 @@ export default Username;
 
 export async function generateMetadata({ params }) {
   return {
-    title: `Support ${params.username} · - Get Me A Chai`,
+    title: `Support ${params.username} · - Get Me A Coffee`,
   }
 }

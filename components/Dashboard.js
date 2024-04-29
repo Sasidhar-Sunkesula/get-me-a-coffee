@@ -8,15 +8,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { Bounce } from "react-toastify";
 
 const Dashboard = () => {
-  const { data: session } = useSession();
+  const { data:session } = useSession();
   const router = useRouter();
   const [form, setform] = useState({});
 
   useEffect(() => {
     if (!session) {
       router.push("/login");
-    }
-    else{
+    } else {
       getData();
     }
   }, [router, session]);
@@ -33,7 +32,7 @@ const Dashboard = () => {
   const handleSubmit = async (e) => {
     let a = await updateProfile(e, session.user.name);
     toast("Profile Updated!", {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,

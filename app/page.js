@@ -9,17 +9,17 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col justify-center items-center gap-6 h-[44vh] text-white px-5 md:px-0 text-xs md:text-base">
-        <div className="font-bold flex justify-center items-end gap-4 md:gap-20 md:text-5xl text-3xl">
+        <div className="font-bold flex justify-center items-end gap-4 md:gap-4 md:text-5xl text-3xl">
           Get Me a Coffee{" "}
           <span>
             <Image src={"/coffee.gif"} alt="Coffee" width={88} height={88} />
           </span>
         </div>
-        <p className="text-center text-sm md:text-lg md:text-left">
+        <p className="text-center font-semibold text-sm md:text-lg md:text-left">
           A crowdfunding platform for creators. Get funded by your fans and
           followers. Start Now!
         </p>
-        <p className="text-center text-sm md:text-lg md:text-left">
+        <p className="text-center font-semibold text-sm md:text-lg md:text-left">
           A place where your fans can buy you a Coffee. Unleash the power of
           your fans and get your projects funded.
         </p>
@@ -98,7 +98,7 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-center mb-14">
           Learn More About Us
         </h2>
-        <div className="w-[90%] h-[40vh] md:w-[50%] md:h-[40vh] lg:w-[50%] lg:h-[40vh] xl:w-[50%] xl:h-[40vh]">
+        <div className="w-[90%] h-[25vh] md:w-[50%] md:h-[40vh] lg:w-[50%] lg:h-[40vh] xl:w-[50%] xl:h-[40vh]">
         <iframe
          className="w-full h-full"
           src="https://www.youtube.com/embed/5utdT0ksIws?si=EFcbdhYahmSBsFRB"
